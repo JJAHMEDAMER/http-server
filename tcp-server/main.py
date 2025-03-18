@@ -17,15 +17,17 @@ class TCPServer:
                 print(f"Connection from {addr}")
 
                 data = conn.recv(1024 * 2)
-                print(data)
+                print(data.decode())
                 if not data:
                     break
 
                 # fmt: off
                 res = (
-                    "HTTP/1.1 200 OK\r\n"
-                    "\r\n"
-                ) + data.decode()
+                    'HTTP/1.1 200 OK\r\n'
+                    'Content-Type: application/json\r\n'
+                    '\r\n'
+                    '{"TEST": "TEST"}'
+                )
                 # fmt: on
 
                 print(res)
